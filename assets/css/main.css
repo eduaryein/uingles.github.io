@@ -618,6 +618,8 @@ a{text-decoration: none;}
 .wx-overflow-visible { overflow: visible !important; }
 .wx-overflow-scroll { overflow: scroll !important; }
 
+.wx-pboton{padding-bottom: 50px;}
+
 
 /* Menú estilo */
 .navbar-1 {
@@ -889,17 +891,39 @@ a{text-decoration: none;}
 }
 
 .btn-whatsapp-1 {
-    background: var(--color-primary);
+    /* Color oficial de WhatsApp */
+    background-color: #25D366; 
     color: white;
     border: none;
-    font-size: 1.1rem;
+    
+    /* Tamaño y Espaciado */
+    font-size: 1.3rem; /* Más grande */
+    font-weight: bold;
+    padding: 12px 25px;
+    border-radius: 8px;
+    
+    /* Alineación del icono y texto */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px; /* Espacio entre icono y texto */
+    
+    text-decoration: none; /* Quita el subrayado del link */
     text-transform: uppercase;
+    transition: all 0.3s ease;
+    cursor: pointer;
 }
 
 .btn-whatsapp-1:hover {
-    background: #e94102;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+    background-color: #128C7E; /* Verde más oscuro para el hover */
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+}
+
+/* Ajuste opcional para el tamaño del icono */
+.btn-whatsapp-1 svg {
+    width: 28px;
+    height: 28px;
 }
 
 .btn-transparent-1 {
@@ -1264,7 +1288,7 @@ a{text-decoration: none;}
     line-height: 1.3;
     color: #4F4F4F;*/
     font-size: 1rem;
-    color: #4F4F4F;
+    color: #666;
     margin-bottom: 2rem;
     line-height: 1.3;
 }
@@ -1540,9 +1564,11 @@ a{text-decoration: none;}
 /* Responsive */
 @media (max-width: 992px) {
     .about-title {
-        font-size: 2rem;
+        font-size: var(--spacing-12);
+        font-weight: 700;
+        line-height: 1.3;
     }
-    
+
     .about-row {
         gap: 30px;
     }
@@ -1589,7 +1615,7 @@ a{text-decoration: none;}
     }
     
     .about-title {
-        font-size: 1.75rem;
+        /*font-size: 1.75rem;*/
     }
     
     .about-text-short {
@@ -1751,235 +1777,277 @@ a{text-decoration: none;}
   border-width: 0;
 }
 
-/* ========================================
-   SECCIÓN DE PLANES
-======================================== */
 
-.section-planes .wx-title-area{
-    margin: 0 auto;
-    text-align: center;
-    margin-top: 80px;
-    margin-bottom: 40px;
+/* =========================================
+   SECCIÓN CURSOS - NUEVO DISEÑO PROFESIONAL
+========================================= */
+
+/* Contenedor de cursos con grid */
+.wx-container-cursos {
+    margin-top: var(--spacing-10);
 }
 
-.section-planes .wx-title-area .wx-text-shape {
-    display: inline-block; /* Esto mantiene el shape pegado al texto */
-}
 
-.section-planes .wx-title-area h2{
+.section-cursos .wx-title-area h2 {
     font-size: var(--spacing-12);
     font-weight: 700;
     line-height: 1.3;
-}
+    text-align: center;
+} 
 
-.section-planes .wx-title-area h5{
+.section-cursos .wx-title-area p {
     font-size: var(--spacing-3);
     font-weight: 400;
     line-height: 1.3;
-    color: #4F4F4F;
+    font-size: 1rem;
+    color: #666;
 }
 
-/* Estilos para las tarjetas de planes */
-.wx-card-plan {
+/* Tarjeta de curso - estilo artículo/blog */
+.wx-card-curso {
     background: white;
-    border-radius: 20px;
-    padding: 30px 25px;
-    text-align: center;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-    transition: all 0.3s ease;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     height: 100%;
     display: flex;
     flex-direction: column;
+    border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.wx-card-curso:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px rgba(255, 69, 0, 0.15);
+}
+
+/* Contenedor de la imagen */
+.curso-imagen {
     position: relative;
     overflow: hidden;
+    aspect-ratio: 16 / 11; /* Proporción de imagen de artículo */
+    width: 100%;
 }
 
-/* Efecto hover en la tarjeta */
-.wx-card-plan:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(255, 107, 0, 0.15);
-}
-
-
-/* Plan destacado (con imagen en esquina) */
-.wx-card-plan.featured {
-    /*border: 2px solid var(--color-primary);*/
-    transform: scale(1.05);
-    z-index: 2;
-    position: relative;
-    overflow: visible; /* Cambiamos a visible para que la imagen no se corte */
-}
-
-/* Contenedor para la imagen destacada */
-.wx-card-plan.featured .featured-badge {
-    position: absolute;
-    top: -10px; 
-    right: -30px; 
-    width: 80px; 
-    height: auto;
-    z-index: 10;
-}
-
-.wx-card-plan.featured .featured-badge img {
-    width: 70%;
-    height: auto;
+.curso-imagen img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     display: block;
-    filter: drop-shadow(0 5px 10px rgba(0,0,0,0.2));
+    transition: transform 0.4s ease;
 }
 
-/* Para pantallas pequeñas */
-@media (max-width: 768px) {
-    .wx-card-plan.featured {
-        transform: scale(1);
-        margin: 20px 0;
-    }
-    
-    .wx-card-plan.featured .featured-badge {
-        width: 60px; /* Más pequeño en móviles */
-        top: -5px;
-        right: -5px;
-    }
+.wx-card-curso:hover .curso-imagen img {
+    transform: scale(1.08);
 }
 
-/* Título del plan */
-.wx-card-plan .plan-title {
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: var(--color-black);
-    margin-bottom: 10px;
+/* Etiqueta de nivel (Básico, Kids, Intensivo...) */
+.curso-nivel {
+    position: absolute;
+    top: var(--spacing-3);
+    left: var(--spacing-3);
+    color: white;
+    padding: var(--spacing-1) var(--spacing-3);
+    border-radius: 50px;
+    font-size: 0.7rem;
+    font-weight: var(--font-semi-bold);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    z-index: 2;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
-/* Contenedor del icono/medalla */
-.wx-card-plan .plan-icon {
-    margin: 40px 0;
-}
-
-.wx-card-plan .plan-icon img {
-    width: 100px;
-    height: auto;
-    filter: drop-shadow(0 5px 10px rgba(255, 107, 0, 0.3));
-}
-
-/* Precio */
-.wx-card-plan .plan-price {
-    font-size: 2.8rem;
-    font-weight: 700;
-    color: var(--color-black);
-    margin-bottom: 10px;
-    line-height: 1.2;
-}
-
-.wx-card-plan .plan-price span {
-    font-size: 1rem;
-    font-weight: 400;
-    color: #666;
-    display: inline-block;
-    margin-top: 5px;
-}
-
-/* Lista de características */
-.wx-card-plan .plan-features {
-    list-style: none;
-    padding: 0;
-    margin: 20px 0 30px;
-    flex-grow: 1;
-}
-
-.wx-card-plan .plan-features li {
-    padding: 10px 0;
-    color: #4F4F4F;
-    font-size: 1rem;
-    border-bottom: 1px solid #eee;
+/* Contenido textual de la tarjeta */
+.curso-contenido {
+    padding: var(--spacing-6) var(--spacing-5);
+    flex: 1;
     display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 8px;
+    flex-direction: column;
 }
 
-.wx-card-plan .plan-features li:last-child {
-    border-bottom: none;
-}
-
-/* Iconos de check para las características (opcional) */
-.wx-card-plan .plan-features li::before {
-    content: '●';
+/* Título del curso */
+.curso-titulo {
+    font-size: 1.25rem;
+    font-weight: var(--font-bold);
     color: var(--color-black);
-    font-weight: 700;
+    margin-bottom: var(--spacing-4);
+    line-height: 1.3;
+}
+
+/* Bloque de precio */
+.curso-precio {
+    margin-bottom: var(--spacing-4);
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+}
+
+.precio-monto {
+    font-size: 2rem;
+    font-weight: var(--font-extra-bold);
+    color: var(--color-black);
+    line-height: 1;
+}
+
+.precio-periodo {
+    font-size: 0.9rem;
+    color: #888;
+    font-weight: var(--font-regular);
+}
+
+/* Frecuencia (días por semana) */
+.curso-frecuencia {
+    margin-bottom: var(--spacing-6);
+    padding: var(--spacing-2) 0;
+    color: #555;
+    font-size: 0.95rem;
+    font-weight: var(--font-medium);
+    border-top: 1px solid #f0f0f0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.icono-frecuencia {
     font-size: 1rem;
 }
 
-/* Botón del plan */
-.wx-card-plan .plan-btn {
+/* Botón del curso */
+.curso-btn {
     background: transparent;
     color: var(--color-primary);
     border: 2px solid var(--color-primary);
-    padding: 20px 30px;
+    padding: var(--spacing-3) var(--spacing-5);
     border-radius: 10px;
-    font-size: 1rem;
-    font-weight: 600;
+    font-size: 0.95rem;
+    font-weight: var(--font-bold);
     cursor: pointer;
     transition: all 0.3s ease;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
     width: 100%;
-    max-width: 250px;
-    margin: 0 auto;
+    margin-top: auto;
+    text-align: center;
 }
 
-.wx-card-plan .plan-btn:hover {
+.curso-btn:hover {
     background: var(--color-primary);
     color: white;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(255, 107, 0, 0.3);
+    box-shadow: 0 6px 20px rgba(255, 69, 0, 0.3);
 }
 
-/* Para el plan destacado, el botón puede tener estilo diferente */
-.wx-card-plan.featured .plan-btn {
+/* =========================================
+   ESTILOS PARA EL CURSO DESTACADO
+========================================= */
+.wx-card-curso.destacado {
+    border: 2px solid var(--color-primary);
+    transform: scale(1.03);
+    box-shadow: 0 10px 30px rgba(255, 69, 0, 0.15);
+    position: relative;
+    z-index: 2;
+}
+
+.wx-card-curso.destacado:hover {
+    transform: scale(1.03) translateY(-8px);
+}
+
+.wx-card-curso.destacado .curso-btn {
     background: var(--color-primary);
     color: white;
+    border-color: var(--color-primary);
 }
 
-.wx-card-plan.featured .plan-btn:hover {
-    background: #e94102;
-    border-color: #e94102;
+.wx-card-curso.destacado .curso-btn:hover {
+    background: var(--color-primary-dark);
+    border-color: var(--color-primary-dark);
+    box-shadow: 0 8px 25px rgba(255, 69, 0, 0.4);
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-    .wx-card-plan {
-        margin-bottom: 20px;
-    }
-    
-    .wx-card-plan.featured {
+/* Opcional: badge "Más Popular" para el destacado */
+.wx-card-curso.destacado .curso-imagen::after {
+    content: 'MÁS POPULAR';
+    position: absolute;
+    top: var(--spacing-3);
+    right: var(--spacing-3);
+    background: var(--color-warning);
+    color: var(--color-black);
+    padding: var(--spacing-1) var(--spacing-3);
+    border-radius: 50px;
+    font-size: 0.65rem;
+    font-weight: var(--font-extra-bold);
+    letter-spacing: 0.5px;
+    z-index: 2;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+/* Tablets grandes (2 columnas) */
+@media (max-width: 991px) {
+    .wx-card-curso.destacado {
         transform: scale(1);
-        margin: 20px 0;
     }
     
-    .wx-card-plan.featured::before {
-        font-size: 0.7rem;
-        padding: 5px 25px;
-        right: -35px;
+    .wx-card-curso.destacado:hover {
+        transform: translateY(-8px);
     }
     
-    .wx-card-plan .plan-title {
-        font-size: 1.5rem;
+    .curso-titulo {
+        font-size: 1.1rem;
     }
     
-    .wx-card-plan .plan-price {
-        font-size: 2rem;
+    .precio-monto {
+        font-size: 1.7rem;
     }
-    
-    .wx-card-plan .plan-btn {
-        padding: 10px 20px;
-        font-size: 1rem;
-    }
+}
 
-    .wx-card-plan .plan-features{ 
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+/* Móviles (1 columna) */
+@media (max-width: 767px) {
+    .wx-card-curso {
+        margin-bottom: var(--spacing-4);
+        border-radius: 12px;
+    }
+    
+    .curso-imagen {
+        aspect-ratio: 16 / 9;
+    }
+    
+    .curso-contenido {
+        padding: var(--spacing-4) var(--spacing-4);
+    }
+    
+    .curso-titulo {
+        font-size: 1.2rem;
+        margin-bottom: var(--spacing-3);
+    }
+    
+    .precio-monto {
+        font-size: 1.8rem;
+    }
+    
+    .curso-btn {
+        padding: var(--spacing-3);
+        font-size: 0.9rem;
+    }
+    
+    .wx-card-curso.destacado {
+        transform: scale(1);
+        margin: var(--spacing-2) 0;
+    }
+    
+    .wx-title-area .wx-w-40 {
+        width: 90% !important;
+    }
+    
+    .section-cursos .wx-title-area h2 {
+        /*font-size: 1.8rem;*/
+    }
+}
+
+@media (max-width: 750px) {
+
+    .curso-imagen{
+        aspect-ratio: 10 / 8;
     }
 }
 
@@ -1995,8 +2063,14 @@ a{text-decoration: none;}
     height: 100%;
 }
 
+@media only screen and (min-width: 992px){
+    .wx-invitavion{
+        margin-top: 80px;
+    }
+}
+
 .wx-invitavion {
-    margin: 80px 0;
+  margin-bottom: 60px;
   position: relative; /* Contenedor relativo para posicionar las imágenes */
 }
 
@@ -2021,8 +2095,9 @@ a{text-decoration: none;}
   bottom: 0;
 }
 
-.wx-invitavion  .content-area{
-    padding: 50px 0;
+.wx-invitavion .content-area {
+    padding-top: 120px;
+    /* padding: 50px 0; */
 }
 
 .wx-invitavion  .content-area h2{
@@ -2337,7 +2412,9 @@ a{text-decoration: none;}
     }
     
     .faq-title {
-        font-size: 2rem;
+        font-size: var(--spacing-12);
+        font-weight: 700;
+        line-height: 1.3;
         text-align: center;
     }
     
